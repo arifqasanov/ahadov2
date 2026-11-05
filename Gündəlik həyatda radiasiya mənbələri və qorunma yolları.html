@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gündəlik həyatda radiasiya mənbələri və qorunma yolları</title>
+<style>
+:root{--bg:#0b0e1c;--bg2:#161b36;--card:rgba(255,255,255,.06);--line:rgba(255,255,255,.14);--tx:#eef1fb;--mut:#a9b1d1;--a:#7cf0c1;--b:#ffb347;--c:#8b7bff;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0e1c;--tx:#eef1fb}}
+:root[data-theme="dark"]{--bg:#0b0e1c;--tx:#eef1fb}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--tx);font-family:'Segoe UI',system-ui,Arial,sans-serif}
+.bgfx{position:fixed;inset:0;overflow:hidden;z-index:0}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.35;animation:drift 14s ease-in-out infinite alternate}
+.b1{width:46vmax;height:46vmax;background:var(--c);left:-12vmax;top:-12vmax}
+.b2{width:40vmax;height:40vmax;background:var(--a);right:-14vmax;bottom:-14vmax;animation-delay:-5s;opacity:.25}
+.b3{width:28vmax;height:28vmax;background:var(--b);right:20vw;top:-10vmax;animation-delay:-9s;opacity:.18}
+@keyframes drift{to{transform:translate(8vmax,6vmax) scale(1.2)}}
+.grid{position:fixed;inset:0;z-index:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;opacity:.12;mask-image:radial-gradient(circle at 50% 40%,#000,transparent 75%)}
+#prog{position:fixed;left:0;top:0;height:4px;background:linear-gradient(90deg,var(--a),var(--b));z-index:5;transition:width .6s cubic-bezier(.2,.8,.2,1);width:0}
+.slide{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;justify-content:center;gap:2.2vmin;padding:max(7vmin,env(safe-area-inset-top,0px)) 8vw 11vmin;opacity:0;visibility:hidden;transform:scale(.96) translateY(3vmin);transition:opacity .6s,transform .7s cubic-bezier(.2,.8,.2,1),visibility .6s}
+.slide.active{opacity:1;visibility:visible;transform:none}
+.slide>*{opacity:0;transform:translateY(4vmin);filter:blur(8px)}
+.slide.active>*,.slide.active .card{animation:rise .8s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i,0)*.12s + .15s)}
+@keyframes rise{to{opacity:1;transform:none;filter:none}}
+.tag{font-size:max(1.6vmin,13px);letter-spacing:.3em;color:var(--a);font-weight:700}
+h1{font-size:min(8.2vw,12vmin);line-height:1.04;font-weight:800;max-width:14ch;background:linear-gradient(100deg,#fff,var(--a) 45%,var(--b));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:-200% 0}}
+h2{font-size:min(5.6vw,8.6vmin);font-weight:800;line-height:1.08}
+h2 span{color:var(--a)}
+.sub{font-size:min(2.4vw,3.6vmin);color:var(--mut);max-width:34ch;line-height:1.4}
+.author{font-size:min(2.6vw,4vmin);color:var(--mut)}.author b{color:var(--b)}
+.cards{display:grid;gap:2vmin;grid-template-columns:repeat(var(--n,3),1fr);margin-top:1.5vmin}
+.card{background:var(--card);border:1px solid var(--line);border-radius:2.4vmin;padding:3vmin;backdrop-filter:blur(14px);display:flex;flex-direction:column;gap:1vmin;opacity:0;transform:translateY(5vmin);transition:transform .3s,border-color .3s}
+.card:hover{transform:translateY(-1vmin) scale(1.02)!important;border-color:var(--a)}
+.card .e{font-size:min(6vw,8vmin);display:inline-block;animation:bob 3s ease-in-out infinite;animation-delay:calc(var(--i)*.3s)}
+@keyframes bob{50%{transform:translateY(-1.2vmin) rotate(6deg)}}
+.card h3{font-size:min(2.3vw,3.6vmin);color:var(--a)}.card.o h3{color:var(--b)}
+.card p{font-size:min(1.7vw,2.7vmin);line-height:1.4;color:var(--mut)}
+.num{font-size:min(5.4vw,9vmin);font-weight:800;color:var(--b);line-height:1}
+.rings{position:absolute;right:9vw;top:50%;width:34vmin;height:34vmin;margin-top:-17vmin;z-index:1;display:grid;place-items:center;opacity:0;transition:opacity 1s .4s}
+.active .rings{opacity:1}
+.rings i{position:absolute;inset:0;border:3px solid var(--a);border-radius:50%;animation:ping 3.6s ease-out infinite}
+.rings i:nth-child(2){animation-delay:1.2s;border-color:var(--b)}
+.rings i:nth-child(3){animation-delay:2.4s;border-color:var(--c)}
+@keyframes ping{from{transform:scale(.3);opacity:1}to{transform:scale(1.5);opacity:0}}
+.rings b{font-size:19vmin;animation:spin 12s linear infinite;filter:drop-shadow(0 0 3vmin var(--b))}
+@keyframes spin{to{transform:rotate(360deg)}}
+.chips{display:flex;gap:1.4vmin;flex-wrap:wrap}
+.chip{padding:1.2vmin 2.4vmin;border:1px solid var(--line);border-radius:99px;font-size:min(1.8vw,2.8vmin);background:var(--card)}
+.nav{position:fixed;bottom:max(2.4vmin,env(safe-area-inset-bottom,0px));left:0;right:0;z-index:6;display:flex;justify-content:center;align-items:center;gap:1.6vmin}
+.nav button{width:6vmin;height:6vmin;min-width:40px;min-height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--tx);font-size:2.6vmin;cursor:pointer;backdrop-filter:blur(10px)}
+.nav button:hover{background:var(--a);color:#0b0e1c}
+.dots{display:flex;gap:1vmin}.dots i{width:1.2vmin;height:1.2vmin;min-width:8px;min-height:8px;border-radius:50%;background:var(--line);cursor:pointer;transition:.4s}
+.dots i.on{background:var(--a);transform:scale(1.5)}
+@media (max-width:700px){.cards{grid-template-columns:1fr!important}.rings{display:none}.card{padding:2vmin}.card .e{font-size:5vmin}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition-duration:.01s!important}}
+</style>
+</head>
+<body>
+<div class="bgfx"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div><div class="grid"></div><div id="prog"></div>
+<main id="deck"></main>
+<div class="nav"><button id="pv" aria-label="Əvvəlki">‹</button><div class="dots" id="dots"></div><button id="nx" aria-label="Növbəti">›</button></div>
+<script>
+const C=(e,t,p,o)=>({e,t,p,o});
+const cards=(a,n)=>`<div class="cards" style="--n:${n||a.length}">`+a.map((x,i)=>`<div class="card ${x.o?'o':''}" style="--i:${i+3}"><span class="e">${x.e}</span><h3>${x.t}</h3><p>${x.p}</p></div>`).join('')+`</div>`;
+const H=(t,s)=>`<p class="tag" style="--i:0">RADİASİYA</p><h2 style="--i:1">${t}</h2><p class="sub" style="--i:2">${s}</p>`;
+const S=[
+`<p class="tag" style="--i:0">PREZENTASİYA</p><h1 style="--i:1">Gündəlik həyatda radiasiya mənbələri və qorunma yolları</h1><p class="author" style="--i:2">Hazırladı: <b>Səid Əhədov</b></p><div class="rings"><i></i><i></i><i></i><b>☢️</b></div>`,
+`<p class="tag" style="--i:0">GİRİŞ</p><h2 style="--i:1">Radiasiya <span>nədir?</span></h2><p class="sub" style="--i:2;max-width:40ch">Enerjinin dalğa və ya hissəciklər şəklində fəzada yayılmasıdır. Radiasiya təkcə təhlükəli deyil, həyatımızın təbii hissəsidir.</p><div class="chips" style="--i:3"><span class="chip">🌿 Təbii</span><span class="chip">🏭 Süni</span><span class="chip">⚡ Dalğa</span><span class="chip">⚛️ Hissəcik</span></div><div class="rings"><i></i><i></i><i></i><b>⚛️</b></div>`,
+H('Təbii radiasiya <span>mənbələri</span>','Biz hər gün onların təsirinə məruz qalırıq')+cards([C('☀️','Günəş və kosmos','Yüksəkliyə qalxdıqca kosmik şüaların təsiri artır.'),C('🪨','Torpaq və qayalar','Tərkibində uran, toryum və kalium-40 var.'),C('💨','Radon qazı','Zirzəmilərdə yığılır və əsas təbii mənbələrdən biridir.')]),
+H('Süni radiasiya <span>mənbələri</span>','İnsanın yaratdığı mənbələr')+cards([C('🩻','Tibbi cihazlar','Rentgen və kompüter tomoqrafiyası.',1),C('📱','Telefon və Wi-Fi','Radiodalğa şüalanması.',1),C('🍳','Mikrodalğalı soba','Qapağı bağlı olanda təhlükəsizdir.',1),C('⚡','Elektrik xətləri','Yüksək gərginlikli xətlər.',1)]),
+H('İki əsas <span>növ</span>','Enerjiyə görə fərqlənirlər')+cards([C('☢️','İonlaşdırıcı','Rentgen, qamma, alfa və beta şüaları. Atomları ionlaşdırır və DNT-ni zədələyə bilər.'),C('📡','Qeyri-ionlaşdırıcı','Radiodalğa, mikrodalğa, Wi-Fi, görünən işıq. Enerjisi zəifdir, əsasən istilik effekti verir.',1)]),
+H('Rəqəmlərlə <span>radiasiya</span>','Təxmini dəyərlər, mSv (millizivert)')+`<div class="cards" style="--n:3">`+[['2,4','mSv','Dünya üzrə orta illik təbii fon'],['0,1','mSv','Döş qəfəsi rentgeni üçün təxmini doza'],['50','%','Təbii dozanın təxminən yarısı radondan gəlir']].map((x,i)=>`<div class="card" style="--i:${i+3}"><div class="num"><span data-n="${x[0]}">0</span> <small style="font-size:.4em">${x[1]}</small></div><p>${x[2]}</p></div>`).join('')+`</div>`,
+H('Qorunmanın <span>üç qaydası</span>','Vaxt, məsafə, mühafizə')+cards([C('⏱️','1. Vaxt','Mənbə yanında keçirdiyiniz vaxtı azaldın.',1),C('📏','2. Məsafə','Məsafə iki dəfə artanda doza təxminən dörd dəfə azalır.',1),C('🛡️','3. Mühafizə','Qurğuşun və beton kimi ekranlardan istifadə edin.',1)]),
+H('Gündəlik <span>məsləhətlər</span>','Sadə addımlarla təhlükəsiz həyat')+cards([C('🏠','Evi havalandırın','Radonun yığılmasının qarşısı alınır.'),C('🎧','Qulaqlıq istifadə edin','Telefonu uzun danışıqda başdan uzaq tutun.'),C('🩺','Lazımsız müayinədən çəkinin','Rentgen və KT yalnız həkim təyin edərsə.',1),C('🧴','Günəşdən qorunun','SPF krem və 10:00-16:00 arası kölgə.',1)],4),
+`<p class="tag" style="--i:0">NƏTİCƏ</p><h1 style="--i:1">Təşəkkür edirəm!</h1><p class="sub" style="--i:2;max-width:40ch">Radiasiyadan qorxmaq yox, onu tanımaq və düzgün qorunmaq vacibdir.</p><p class="author" style="--i:3"><b>Səid Əhədov</b></p><div class="rings"><i></i><i></i><i></i><b>🛡️</b></div>`
+];
+const deck=document.getElementById('deck'),dots=document.getElementById('dots');
+S.forEach((h,i)=>{const s=document.createElement('section');s.className='slide';s.innerHTML=h;deck.appendChild(s);const d=document.createElement('i');d.onclick=()=>go(i);dots.appendChild(d)});
+const sl=[...deck.children],dt=[...dots.children];let cur=-1;
+function count(el){const raw=el.dataset.n,t=parseFloat(raw.replace(',','.')),dec=raw.includes(',')?1:0,t0=performance.now();(function f(n){const p=Math.min(1,(n-t0)/1400),v=t*(1-Math.pow(1-p,3));el.textContent=v.toFixed(dec).replace('.',',');if(p<1)requestAnimationFrame(f)})(t0)}
+function go(i){i=Math.max(0,Math.min(S.length-1,i));if(i===cur)return;sl.forEach((s,k)=>s.classList.toggle('active',k===i));dt.forEach((d,k)=>d.classList.toggle('on',k===i));document.getElementById('prog').style.width=((i+1)/S.length*100)+'%';cur=i;sl[i].querySelectorAll('[data-n]').forEach(e=>setTimeout(()=>count(e),600));try{history.replaceState(null,'','#s'+(i+1))}catch(e){}}
+document.getElementById('nx').onclick=()=>go(cur+1);document.getElementById('pv').onclick=()=>go(cur-1);
+addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key))go(cur+1);if(['ArrowLeft','PageUp'].includes(e.key))go(cur-1)});
+let x0=null;addEventListener('touchstart',e=>x0=e.touches[0].clientX);addEventListener('touchend',e=>{if(x0===null)return;const d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>50)go(cur+(d<0?1:-1));x0=null});
+const m=/^#s(\d+)$/.exec(location.hash);go(m?+m[1]-1:0);
+</script>
+</body>
+</html>
